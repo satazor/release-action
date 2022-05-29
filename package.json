@@ -1,0 +1,42 @@
+{
+  "name": "@uphold/release-action",
+  "version": "0.0.0",
+  "description": "A GitHub action that takes care of releases based on semantic pull-request labels",
+  "main": "src/index.js",
+  "homepage": "https://github.com/uphold/release-action",
+  "keywords": [
+    "Uphold",
+    "GitHub",
+    "Actions",
+    "JavaScript",
+    "release"
+  ],
+  "author": "Uphold",
+  "license": "MIT",
+  "scripts": {
+    "lint": "uphold-scripts lint .",
+    "lint-staged": "lint-staged -q",
+    "prebuild": "rm -rf dist",
+    "build": "ncc build src/index.js -o dist --license licenses.txt",
+    "postbuild": "cp -r src/auto-plugins dist",
+    "dev": "onchange 'src/**' -- yarn build",
+    "test": "uphold-scripts test"
+  },
+  "pre-commit": [
+    "lint-staged"
+  ],
+  "lint-staged": {
+    "*.{js,mjs}": [
+      "uphold-scripts lint"
+    ]
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.5",
+    "@auto-it/core": "^10.37.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.31.1",
+    "onchange": "^7.1.0",
+    "uphold-scripts": "^0.7.1"
+  }
+}
