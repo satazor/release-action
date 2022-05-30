@@ -1,0 +1,2 @@
+# Needed because dist might contain clrf which gives error if safeclrf is on.
+dist/* -text

@@ -1,0 +1,12 @@
+name: 'Uphold release'
+description: 'Generate releases based on semantic pull-request labels'
+inputs:
+  repo-token:
+    description: 'Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`.'
+    required: true
+  preset:
+    description: 'The release preset to use.'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
